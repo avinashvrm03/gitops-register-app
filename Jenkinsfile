@@ -19,11 +19,17 @@ pipeline {
 
         stage("Update the Deployment Tags") {
             steps {
-                sh """
-                   cat deployment.yaml
-                   sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' deployment.yaml
-                   cat deployment.yaml
-                """
+                script {
+                    sh """
+                    echo '[Before Update]'
+                    grep 'image:' deployment.yaml || true
+                    
+                    sed -i 's#\\(image: avinash0001/registration-app-pepeline:\\).*#\\1${IMAGE_TAG}#' deployment.yaml
+                    
+                    echo '[After Update]'
+                    grep 'image:' deployment.yaml || true
+                    """
+                }
             }
         }
 
