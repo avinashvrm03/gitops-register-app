@@ -24,7 +24,7 @@ pipeline {
                     echo '[Before Update]'
                     grep 'image:' deployment.yaml || true
                     
-                   //sed -i 's#\\(image: avinash0001/registration-app-pepeline:\\).*#\\1${IMAGE_TAG}#' deployment.yaml
+                   #sed -i 's#\\(image: avinash0001/registration-app-pepeline:\\).*#\\1${IMAGE_TAG}#' deployment.yaml
                     sed -i 's#\\(image: avinash0001/registration-app-pipeline:\\).*#\\1${IMAGE_TAG}#' deployment.yaml
 
                     
